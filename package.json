@@ -15,11 +15,14 @@
   },
   "dependencies": {
     "gatsby": "^3.1.2",
+    "gatsby-plugin-postcss": "^4.1.0",
+    "postcss": "^8.2.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "tailwindcss": "^2.0.4"
   },
   "repository": {
     "type": "git",
