@@ -3,6 +3,8 @@ import Repo from "./repo"
 
 export default () => {
   const [repos, setRepos] = useState([])
+  const [reposCount, setReposCount] = useState([])
+
 
   useEffect(() => {
     const data = sessionStorage.getItem("repos")
@@ -10,6 +12,9 @@ export default () => {
 
     if (data) {
       myRepos = JSON.parse(data)
+
+      setReposCount(myRepos.length)
+
       myRepos = myRepos.slice(1, 13)
       return setRepos(myRepos)
     }
@@ -20,6 +25,8 @@ export default () => {
       )
       let myRepos = await response.json()
 
+      setReposCount(myRepos.length)
+
       sessionStorage.setItem("repos", JSON.stringify(myRepos))
 
       setRepos(myRepos)
@@ -29,7 +36,7 @@ export default () => {
   }, [])
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto mt-12">
       <header className="text-center">
         <h2 className="text-3xl font-bold">Mi trabajo en open source</h2>
         <p>Colaboración y contribución de código</p>
@@ -40,6 +47,12 @@ export default () => {
           return <Repo repo={repo} key={repo.id} />
         })}
       </ul>
+      <div className="mt-8 text-center">
+        <a href="https://github.com/manuelduarte077" className="btn" target="_blank" rel="noopener noreferrer">
+            Ver más en GitHub ({reposCount})
+        </a>
+      </div>
+
     </div>
   )
 }
