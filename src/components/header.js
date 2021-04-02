@@ -23,7 +23,6 @@ export default () => (
             ></img>
         </div>
 
-
       <div>
         <Form />
       </div>
