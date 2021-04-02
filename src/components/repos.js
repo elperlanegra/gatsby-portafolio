@@ -5,11 +5,22 @@ export default () => {
   const [repos, setRepos] = useState([])
 
   useEffect(() => {
+    const data = sessionStorage.getItem("repos")
+    let myRepos
+
+    if (data) {
+      myRepos = JSON.parse(data)
+      myRepos = myRepos.slice(1, 13)
+      return setRepos(myRepos)
+    }
+
     async function fetchRepos() {
       const response = await fetch(
         "https://api.github.com/users/manuelduarte077/repos"
       )
       let myRepos = await response.json()
+
+      sessionStorage.setItem("repos", JSON.stringify(myRepos))
 
       setRepos(myRepos)
     }
